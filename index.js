@@ -235,3 +235,43 @@ var removeElement = function (nums, val) {
   // const nums = [3, 0, 8, 2, 0, 0, 1]
   // console.log(canJump(nums))
   
+
+/**
+ * Jump Game II
+ * Greedy Algorithm
+ * @param {number[]} nums
+ * @return {number}
+ */
+var jump = function (nums) {
+  const n = nums.length;
+  if (n === 1) return 0;
+  
+  let jumps = 0;
+  let currentEnd = 0;
+  let farthest = 0;
+  
+  for (let i = 0; i < n; i++) {
+      farthest = Math.max(farthest, i + nums[i]);
+      
+      if (i === currentEnd) {
+          jumps++;
+          currentEnd = farthest;
+          
+          if (currentEnd >= n - 1) {
+              break;
+          }
+      }
+  }
+  
+  return jumps;
+};
+
+// const nums = [2, 3, 1, 1, 4]
+// const nums = [2, 3, 0, 1, 4]
+// const nums = [1, 2]
+// const nums = [1, 2, 3]
+// const nums = [3, 4, 3, 2, 5, 4, 3]
+// const nums = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1, 0]
+// const nums = [1, 2, 0, 1]
+// const nums = [7, 0, 9, 6, 9, 6, 1, 7, 9, 0, 1, 2, 9, 0, 3]
+// console.log(jump(nums))
